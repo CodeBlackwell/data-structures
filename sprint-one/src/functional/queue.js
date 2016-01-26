@@ -1,12 +1,5 @@
 var Queue = function(){
 
-  var objLength = function(obj){
-    var length = 0;
-    for(var key in obj){
-      length++;
-    }
-    return length;
-  }
 
   var someInstance = {},
       highestIndex = 0,
@@ -19,18 +12,21 @@ var Queue = function(){
   // Implement the methods below
 
   someInstance.enqueue = function(value){
-    someInstance[count] = value;
-    //when an element is adde
+    storage[highestIndex] = value;
+    highestIndex++;
     count++;
   };
   
   
 
   someInstance.dequeue = function(value){
-    someInstance[count] = value;
+    var dequeued = storage[lowestIndex] 
+    delete storage[lowestIndex];
+    lowestIndex++
     if(count){
     count--;
     }
+    return dequeued;
   };
 
   someInstance.size = function(){
