@@ -3,22 +3,24 @@ var Stack = function() {
   // but try not not reference your old code in writing the new style.
  
  var newStack = {};
+  newStack.push   = stackMethods.push;
+  newStack.pop    = stackMethods.pop;
+  newStack.size   = stackMethods.size;
+  newStack.count  = 0;
+
    _.extend(newStack, stackMethods);
    return newStack;
- 
-  newStack.count = 0;
+
    };
 var stackMethods = {};
 stackMethods.push = function(){
-  this.count = Stack.count++;
+  this.count++
 };
 stackMethods.pop = function(){
   if(Stack.count){
-    this.count = Stack.count--;
+    this.count--;
   };
 };
 stackMethods.size = function(){
-  this.count = Stack.count;
-  console.log(this.count);
 return this.count;
 };
