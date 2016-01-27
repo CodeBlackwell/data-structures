@@ -10,17 +10,22 @@ var Stack = function() {
 
    _.extend(newStack, stackMethods);
    return newStack;
-
    };
+   
 var stackMethods = {};
-stackMethods.push = function(){
+stackMethods.push = function(value){
+  this[this.count] = value
   this.count++
 };
+
 stackMethods.pop = function(){
-  if(Stack.count){
+  var popped = this[this.count - 1];
+  if(this.count){
     this.count--;
   };
+  return popped;
 };
+
 stackMethods.size = function(){
 return this.count;
 };
