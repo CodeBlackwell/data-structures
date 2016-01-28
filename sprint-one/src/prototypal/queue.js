@@ -13,7 +13,7 @@ var Queue = function() {
 var queueMethods = {};
 
 queueMethods.enqueue = function(value){
-  this[this.maxIndex] = value;[]
+  this[this.maxIndex] = value;
   this.count++;
   this.maxIndex++;
 };
