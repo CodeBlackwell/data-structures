@@ -14,14 +14,12 @@ var queueMethods = {};
 
 queueMethods.enqueue = function(value){
   this[this.maxIndex] = value;[]
-  console.log("this.maxIndex within Enqueue", this.maxIndex)
   this.count++;
   this.maxIndex++;
 };
 
 queueMethods.dequeue = function(){
   var dequeued = this[this.minIndex];
-  console.log("this.minIndex within dequeue", this.minIndex)
   delete this[this.minIndex];
   if(this.count){
     this.count--;

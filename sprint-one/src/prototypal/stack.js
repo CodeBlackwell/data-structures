@@ -9,4 +9,20 @@ var Stack = function() {
 
 var stackMethods = {};
 
+stackMethods.push = function(value){
+  this[this.count] = value;
+  this.count++;
+};
 
+stackMethods.pop = function(){
+  var poppedValue = this[this.count - 1];
+  delete this[this.count];
+  if(this.count){
+    this.count--;
+  }
+  return poppedValue;
+};
+
+stackMethods.size = function(){
+  return this.count;
+};
