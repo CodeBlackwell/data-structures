@@ -13,19 +13,28 @@ newQueue.size    = queueMethods.size;
 newQueue.maxIndex = 0;
 newQueue.minIndex = 0;
 newQueue.count    = 0;
-return newQueue;  
+return newQueue;
 };
 
 var queueMethods = {};
 
 queueMethods.enqueue = function(value){
-
+this[this.maxIndex] = value;
+console.log("this.maxIndex", this.maxIndex);
+this.count++
+this.maxIndex++;
 };
 
 queueMethods.dequeue = function(){
-
+  var dequeued = this[this.minIndex]
+  delete this[this.minIndex];
+  if (this.count){
+    this.count--;
+  }
+  this.minIndex++;
+  return dequeued;
 };
 
 queueMethods.size = function(){
-
+return this.count;
 }
