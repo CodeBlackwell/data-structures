@@ -50,7 +50,6 @@ var LinkedList = function(){
 
 var Node = function(value){
   var nodeInst = {};
-  console.log(value);
   nodeInst.value = value;
   nodeInst.next = null;
 
