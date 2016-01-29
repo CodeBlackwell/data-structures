@@ -5,11 +5,13 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(){
-  var argsLength = [].length.apply(arguments);
+  var argsArray = [].slice.call(arguments);
+  var argsLength = argsArray.length;
+  console.log(argsLength);
   for (var i = 0; i < argsLength; i++){
-  var currentHashedVal = valueHasher(arguments[i], this._limit);
-  this.hashStorage.currentHashedVal= arguments[i];
-  console.log("index after current val assignment to storage", index)
+  var currentHashedVal = valueHasher(argsArray[i], this._limit);
+  this.hashStorage.currentHashedVal= argsArray[i];
+  console.log("index after current val assignment to storage", this.hashStorage.currentHashedVal[i])
   };
 };
 
