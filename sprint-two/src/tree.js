@@ -12,7 +12,8 @@ var Tree = function(value){
 
 
   // your code here
-
+  //child nodes can only have one parent
+  //child nodes can be parents to subnodes (subtrees) 
 
 
 var treeMethods = {};
@@ -22,13 +23,13 @@ var treeMethods = {};
 *then return the modified children array.
 */
 treeMethods.addChild = function(value){
-  //iterate through the children indexes until an underfine space is found.
-  
+  //iterate through the chil nodes until no other child nodes are found
+
   console.log("value of this.children within addChild", this.children);
   this.value = value;
   console.log("value of this.value within addChild", this.value);
   //while(this.children)
-  //assign the value of the new child to the input value;
+  //assign the value of the new child node to the input value;
   //assign the first index of newchild to input value;
   //return newChild;
 
