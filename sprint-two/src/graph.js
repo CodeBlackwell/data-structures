@@ -10,6 +10,7 @@ var Graph = function(){
 
   this.edge;
   this.nodes = {};
+  this.key = null;
   this.value = null;
 };
 
@@ -17,9 +18,10 @@ var Graph = function(){
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node){
 
-  this.nodes[this.value] = node;
+  this.nodes[this.key] = node;
 
-  console.log("value of this.nodes[this.value]", this.nodes[this.value]);
+  console.log("value of this.nodes[this.value]", this.nodes[this.key]);
+  console.log("what 'this' is equal to", this);
 };
 
 // ------------------------
