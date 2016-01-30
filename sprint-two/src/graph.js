@@ -1,14 +1,25 @@
 
-
+/**
+*
+*/
 // ###Graph Solution
 
 // Instantiate a new graph
 var Graph = function(){
+
+
+  this.edge;
+  this.nodes = {};
+  this.value = null;
 };
 
 // ------------------------
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node){
+
+  this.nodes[this.value] = node;
+
+  console.log("vale of this.nodes[this.value]", this.nodes[this.value]);
 };
 
 // ------------------------
@@ -44,6 +55,3 @@ Graph.prototype.forEachNode = function(cb){
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
-
