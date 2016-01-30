@@ -67,6 +67,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
     }
   }
   //push the toNode into nodeHolder
+  
   for(var key in this.nodes){
     if(fromNode === this.nodes[key]){
       console.log('inside the fromNode loop', this.nodes[key])
