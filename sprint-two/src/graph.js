@@ -8,10 +8,10 @@
 var Graph = function(){
 
 
-  this.edge;
+  this.edge = false;
   this.nodes = {};
-  this.key = null;
-  this.value = null;
+  this.key = 0;
+  this.edgeBox = [];
 };
 
 // ------------------------
@@ -22,6 +22,7 @@ Graph.prototype.addNode = function(node){
 
   console.log("value of this.nodes[this.value]", this.nodes[this.key]);
   console.log("what 'this' is equal to", this);
+  this.key++;
 };
 
 // ------------------------
@@ -30,27 +31,56 @@ Graph.prototype.contains = function(node){
   //iterate through all items in the .nodes property
   for(var key in this.nodes){
     if(this.nodes[key] === node){
+      console.log('the value of this.nodes[key] within countains()', this.nodes[key]);
       return true;
     }
-  }
+  } return false;
 };
 
 // ------------------------
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node){
   //iterate through the nodes
-  //look for the target node to be removed
-  //delete the matching node
+  for(var key in this.nodes){
+    //look for the target node to be removed
+    if(node === this.nodes[key]){
+      //delete the matching node
+      delete this.nodes[key];
+    }
+  }
+
+
 };
 
 // ------------------------
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode){
 
-  //iterate through nodes to find fromNode and toNode
+  if(fromNode === toNode){
+    return false;
+  }
+  var nodeHolder = [];
+   //push the fromNode into nodeHolder
+  for(var key in this.nodes){
+    if(fromNode === this.nodes[key]){
+      nodeHolder.push(this.nodes[key])
+    }
+  }
+  //push the toNode into nodeHolder
+  for(var key in this.nodes){
+    if(fromNode === this.nodes[key]){
+      console.log('inside the fromNode loop', this.nodes[key])
+      nodeHolder.push(this.nodes[key])
+    }
+  }
+
+  //iterate through edgeBox
+
   //once found, see if both items contain pointers to each other.
   //if so, return true
   //else return false;
+  //locate the source and 'to'Node
+
   return false;
 
 };
@@ -58,7 +88,33 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 // ------------------------
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode){
-  //locate the source and 'to'Node
+  //check to avoid useless edges.
+  if(fromNode === toNode){
+    return;
+  }
+  var nodeHolder = [];
+  //locate and push the fromNode into nodeHolder
+  for(var key2 in this.nodes){
+
+     if(toNode === this.nodes[key2]){
+
+      nodeHolder.push(this.nodes[key2])
+    }
+  }
+  //locate and push the toNode into NodeHolder
+
+  for(var key in this.nodes){
+    if(fromNode === this.nodes[key]){
+
+      nodeHolder.push(this.nodes[key])
+    }
+  }
+  //push the nodeHolder array which contains the fromNode and toNode
+  //into the graph's edge container;
+  console.log('value of nodeHolder(should have to and from nodes)', nodeHolder)
+  console.log('value of edgebox before attempting push', this.edgeBox)
+  this.edgeBox.push(nodeHolder);
+  console.log('the value of this.edgebox after attempting push', this.edgeBox)
   //assign each a pointer to the other
   // from Source --> Target and Target --> Source
 };
