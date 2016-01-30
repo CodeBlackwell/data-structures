@@ -8,7 +8,6 @@
 var Graph = function(){
 
 
-  this.edge = false;
   this.nodes = {};
   this.key = 0;
   this.edgeBox = [];
@@ -20,8 +19,6 @@ Graph.prototype.addNode = function(node){
 
   this.nodes[this.key] = node;
 
-  console.log("value of this.nodes[this.value]", this.nodes[this.key]);
-  console.log("what 'this' is equal to", this);
   this.key++;
 };
 
@@ -31,7 +28,6 @@ Graph.prototype.contains = function(node){
   //iterate through all items in the .nodes property
   for(var key in this.nodes){
     if(this.nodes[key] === node){
-      console.log('the value of this.nodes[key] within countains()', this.nodes[key]);
       return true;
     }
   } return false;
@@ -67,20 +63,22 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
     }
   }
   //push the toNode into nodeHolder
-  
   for(var key in this.nodes){
     if(fromNode === this.nodes[key]){
-      console.log('inside the fromNode loop', this.nodes[key])
       nodeHolder.push(this.nodes[key])
     }
   }
-
+  //stringify nodeHolder for comparison;
+   nodeHolder = nodeHolder.toString();
   //iterate through edgeBox
-
-  //once found, see if both items contain pointers to each other.
-  //if so, return true
-  //else return false;
-  //locate the source and 'to'Node
+  for(var i = 0 ; i < this.edgeBox.length ; i++){
+      var stringifiedEdge = this.edgeBox[i].toString();
+      console.log('stringifiedEdge', stringifiedEdge);
+      console.log('nodeHolder', nodeHolder);
+      if(nodeHolder === stringifiedEdge){
+        return true;
+      }
+  }
 
   return false;
 
@@ -112,10 +110,7 @@ Graph.prototype.addEdge = function(fromNode, toNode){
   }
   //push the nodeHolder array which contains the fromNode and toNode
   //into the graph's edge container;
-  console.log('value of nodeHolder(should have to and from nodes)', nodeHolder)
-  console.log('value of edgebox before attempting push', this.edgeBox)
   this.edgeBox.push(nodeHolder);
-  console.log('the value of this.edgebox after attempting push', this.edgeBox)
   //assign each a pointer to the other
   // from Source --> Target and Target --> Source
 };
