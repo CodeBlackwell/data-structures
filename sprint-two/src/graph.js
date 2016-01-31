@@ -64,18 +64,17 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
   }
   //push the toNode into nodeHolder
   for(var key in this.nodes){
-    if(fromNode === this.nodes[key]){
+    if(toNode === this.nodes[key]){
       nodeHolder.push(this.nodes[key])
     }
   }
-  //stringify nodeHolder for comparison;
-   nodeHolder = nodeHolder.toString();
+
   //iterate through edgeBox
   for(var i = 0 ; i < this.edgeBox.length ; i++){
-      var stringifiedEdge = this.edgeBox[i].toString();
-      console.log('stringifiedEdge', stringifiedEdge);
-      console.log('nodeHolder', nodeHolder);
-      if(nodeHolder === stringifiedEdge){
+
+      //if the 2 arrays match in [x, y] or [y, x] then....
+      if( (this.edgeBox[i][i] === nodeHolder[i] && this.edgeBox[i][i+1] === nodeHolder[i + 1]) ||
+      (this.edgeBox[i][i+1] === nodeHolder[i] && this.edgeBox[i][i] === nodeHolder[i+1]) ) {
         return true;
       }
   }
@@ -118,10 +117,25 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 // ------------------------
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode){
-//locate to the fromNode and toNode within the graph
-//check to see if the two nodes have an Edge. if so,
-//delete their respective pointers(edges)
-};
+  edgeToCompare = [fromNode, toNode];
+  console.log("the value of edgeToCompare(fromNode, toNode)", edgeToCompare);
+  console.log("the value of edgeBox within removeEdge", this.edgeBox);
+  if(this.hasEdge(fromNode, toNode)){
+    for(i = 0 ; i < this.edgeBox.length ; i++){
+    console.log('in if statement', this.edgeBox[i][0]);
+      if(this.edgeBox[i][0] === edgeToCompare[0]){
+          if(this.edgeBox[i][1] === edgeToCompare[1]){
+            this.edgeBox.splice(i, 1);
+          }
+        } else if(this.edgeBox[i][1] === edgeToCompare[0]){
+            if(this.edgeBox[i][0] === edgeToCompare[0]){
+             this.edgeBox.splice(i, 1);
+          }
+        }
+      }
+    }
+  };
+
 
 // ------------------------
 // Pass in a callback which will be executed on each node of the graph.
