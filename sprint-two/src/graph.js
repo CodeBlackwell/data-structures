@@ -120,18 +120,18 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
   edgeToCompare = [fromNode, toNode];
   console.log("the value of edgeToCompare(fromNode, toNode)", edgeToCompare);
   console.log("the value of edgeBox within removeEdge", this.edgeBox);
-  if(this.hasEdge(fromNode, toNode)){
-    for(i = 0 ; i < this.edgeBox.length ; i++){
-    console.log('in if statement', this.edgeBox[i][0]);
-      if(this.edgeBox[i][0] === edgeToCompare[0]){
-          if(this.edgeBox[i][1] === edgeToCompare[1]){
-            this.edgeBox.splice(i, 1);
-          }
-        } else if(this.edgeBox[i][1] === edgeToCompare[0]){
-            if(this.edgeBox[i][0] === edgeToCompare[0]){
-             this.edgeBox.splice(i, 1);
-          }
-        }
+    for(var i = 0 ; i < this.edgeBox.length ; i++){
+      //if elements 1 and 2 respectively match
+      if(this.edgeBox[i][i] === edgeToCompare[i] && this.edgeBox[i][i+1] === edgeToCompare[i+ 1]){
+      console.log("this.edgeBox before splice in removeEdge 1st conditional", this.edgeBox);
+      this.edgeBox.splice(i, 1);
+      console.log("this.edgbox after splice in removeEdge 1st condotional", this.edgeBox);
+      }
+      //if element 2 matches with element 1 and element 2 matches with element 1
+      else if (this.edgeBox[i][i+1] === edgeToCompare[i] && this.edgeBox[i][i] === edgeToCompare[i+1]){
+      console.log("this.edgeBox before splice in removeEdge 2nd conditional", this.edgeBox);
+      this.edgeBox.splice(i, 1);
+      console.log("this.edgeBox after splice in removeEdge 2nd condotional", this.edgeBox);
       }
     }
   };
